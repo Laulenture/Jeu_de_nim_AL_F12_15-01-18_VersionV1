@@ -1,0 +1,49 @@
+ALGO nim
+
+//BUT:
+//ENTREE:
+//SORTIE:
+
+CONST
+    ALLUMETTE_MAX <- 100 : ENTIER
+    ALLUMETTE_MIN <- 1 : ENTIER
+    PIOCHE_MAX <- 3 : ENTIER
+    PIOCHE_MIN <- 1 : ENTIER
+    FINJEU <- 0 : ENTIER
+
+VAR
+    nb, joueur, pioche : ENTIER
+
+DEBUT
+    //init variables
+    joueur <- 1
+
+    //init partie
+    REPETER
+        ECRIRE "Entrez le nombre d'allumette du jeu"
+        LIRE nb
+    JUSQU'A nb>=ALLUMETTE_MIN ET nb<=ALLUMETTE_MAX
+
+    //tour joueur
+    REPETER
+        
+        ECRIRE "Il y a ", nb, " allumettes"
+        REPETER
+            ECRIRE "Joueur ",joueur ,", combien d'allumettes voulez vous retirer ?"
+            LIRE pioche
+            SI nb-pioche<FINJEU ALORS
+                ECRIRE "Vous avez retiré trop d'allumettes"
+        JUSQU'A (pioche>=PIOCHE_MIN ET pioche<=PIOCHE_MAX) ET (nb-pioche>= FINJEU)
+
+        nb <- nb - pioche
+        
+        SI (joueur = 1) ALORS
+            joueur <- 2
+        SINON
+            joueur <- 1
+        FINSI
+
+    JUSQU'A nb=FINJEU
+
+    ECRIRE"Le joueur ",joueur," gagne !"
+FIN
